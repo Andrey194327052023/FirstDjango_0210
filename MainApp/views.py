@@ -28,7 +28,7 @@ def about(request):
 
 def get_item(request, id):   
     for item in items:
-        if item[id]==id:
+        if item['id'] == id:
             result = f"""
             <h2>Имя: {item["name"]} </h2>
             <p>Количество: {item["quantity"]}</p>
