@@ -11,9 +11,9 @@ def home(request):
 
 
 def about(request):
-    textabout = """ <h1>Имя: Андрей <br>
-                        Отчество: Дмитриевич <br>
-                        Фамилия: Лебедкин <br>
-                        телефон:<br>
-                        e-mail: lebed202@mail.ru  </h1>"""
+    textabout = """ <b>Имя: Андрей</b> <br>
+                    <b>Отчество: Дмитриевич</b> <br>
+                    <b>Фамилия: Лебедкин</b> <br>
+                    <b>телефон:</b><br>
+                    <b>e-mail: lebed202@mail.ru</b>  """
     return HttpResponse(textabout)
