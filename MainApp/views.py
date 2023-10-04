@@ -17,3 +17,15 @@ def about(request):
                     <b>телефон:</b><br>
                     <b>e-mail: lebed202@mail.ru</b>  """
     return HttpResponse(textabout)
+
+def get_item(request):
+    textitem = items
+    return HttpResponse(textitem)
+
+items = [
+    {"id": 1, "name": "Кроссовки abibas" ,"quantity":5},
+    {"id": 2, "name": "Куртка кожаная","quantity":3}
+    {"id": 3, "name": "Coca-cola1 литр","quantity":12}
+    {"id": 4, "name": "Картофель фри","quantity":0}
+    {"id": 5, "name": "Кепка","quantity":124}
+]
