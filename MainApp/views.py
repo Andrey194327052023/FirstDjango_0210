@@ -12,10 +12,13 @@ items =[
 ]
 
 def home(request):
-    text = """ <h1>" learn django"</h1>
-          <strong>Автор</strong>: <i>Лебедкин А Д</i>
-          """
-    return HttpResponse(text)
+    #text = """ <h1>" learn django"</h1>
+     #     <strong>Автор</strong>: <i>Лебедкин А Д</i>
+     #     """
+    #return HttpResponse(text)
+    
+    
+    return render(request, "index.html")
 
 
 def about(request):
