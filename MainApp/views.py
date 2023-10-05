@@ -25,14 +25,18 @@ def home(request):
 
 
 def about(request):
-    textabout = """ <b>Имя: Андрей</b> <br>
+    textabout = """ 
+    <header>
+        /<a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a>
+    </header>
+                    <b>Имя: Андрей</b> <br>
                     <b>Отчество: Дмитриевич</b> <br>
                     <b>Фамилия: Лебедкин</b> <br>
                     <b>телефон:</b><br>
                     <b>e-mail: lebed202@mail.ru</b>  """
     return HttpResponse(textabout)
 
-def get_item(request, id):   
+def get_item(request, item_id):   
     for item in items:
         if item['id'] == id:
             result = f"""
@@ -41,17 +45,27 @@ def get_item(request, id):
             <p><a href="/items">
         """
         return HttpResponse(result)
+    item = next((item for item in items["id"] == item_id), None)
+    if item:
+        context = {
+            "item": item
+        }
+        return render(request, "item-page.html", context)
     return HttpResponseNotFound(f'Item with id={id} not found')
 
 
 
 
 def items_list(request):
-    result = "<h2>Список товаров</h2><ol>"
-    for item in items:
-        result += f"""<li><a href="/item/{item['id']}>"{item['name']}</a></li>"""
-    result += '</ol>'
-    return HttpResponse(result)
+    #result = "<h2>Список товаров</h2><ol>"
+    #for item in items:
+    #    result += f"""<li><a href="/item/{item['id']}>"{item['name']}</a></li>"""
+    #result += '</ol>'
+    #return HttpResponse(result)
+    context = {
+        "items": items
+    }
+    return render(request, "items-list.html", context)
 
 
 
