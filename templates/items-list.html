@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>items list</title>
+    
+    <title> Items list</title>
 </head>
 <body>
     <header>
         /<a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a>
     </header>
+    
+
     <h2>Список товаров</h2>
     <ol>
         {% for item in items %}
-            <li><a herf="/item/{{item.id}}">{{item.name}}></a></li>
+            <li> <a href="/item/{{ item.id }}"> {{ item.name }} </a> </li>
         {% endfor %}
     </ol>
-    
 </body>
 </html>
-    

@@ -3,6 +3,14 @@ from django.http import HttpResponse, HttpResponseNotFound
 
 # Create your views here.
 
+autor = {
+    "Имя": "Иван",
+    "Отчество": "Петрович",
+    "Фамилия": "Иванов",
+    "Телефон": "89236000102",
+    "email": "vasya@mail.ru"
+}
+
 items =[
     {"id": 1, "name": "Кроссовки abibas" ,"quantity":5},
     {"id": 2, "name": "Куртка кожаная","quantity":3},
@@ -25,27 +33,29 @@ def home(request):
 
 
 def about(request):
-    textabout = """ 
+    result = f""" 
     <header>
         /<a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a>
     </header>
-                    <b>Имя: Андрей</b> <br>
-                    <b>Отчество: Дмитриевич</b> <br>
-                    <b>Фамилия: Лебедкин</b> <br>
-                    <b>телефон:</b><br>
-                    <b>e-mail: lebed202@mail.ru</b>  """
-    return HttpResponse(textabout)
+    Имя: <b> {autor['Имя']}</b> <br>
+    Отчество: <b>{autor['Отчество']}</b> <br>
+    Фамилия: <b>{autor['Фамилия']}</b> <br>
+    Телефон:<b>{autor['Телефон']}</b><br>
+    email: <b>{autor['email']}</b>  
+    """
+    return HttpResponse(result)
 
-def get_item(request, item_id):   
-    for item in items:
-        if item['id'] == id:
-            result = f"""
-            <h2>Имя: {item["name"]} </h2>
-            <p>Количество: {item["quantity"]}</p>
-            <p><a href="/items">
-        """
-        return HttpResponse(result)
-    item = next((item for item in items["id"] == item_id), None)
+def get_item(request, item_id):
+     
+    #for item in items:
+    #    if item['id'] == id:
+    #        result = f"""
+    #        <h2>Имя: {item["name"]} </h2>
+    #        <p>Количество: {item["quantity"]}</p>
+    #        <p><a href="/items">Назад к списку товаров</a></p>
+    #    """
+    #    return HttpResponse(result)
+    item = next((item for item in items if item["id"] == item_id), None)
     if item:
         context = {
             "item": item
