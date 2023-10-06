@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from MainApp.models import Item
 
 # Create your views here.
 
@@ -46,32 +47,26 @@ def about(request):
     return HttpResponse(result)
 
 def get_item(request, item_id):
-     
-    #for item in items:
-    #    if item['id'] == id:
-    #        result = f"""
-    #        <h2>Имя: {item["name"]} </h2>
-    #        <p>Количество: {item["quantity"]}</p>
-    #        <p><a href="/items">Назад к списку товаров</a></p>
-    #    """
-    #    return HttpResponse(result)
-    item = next((item for item in items if item["id"] == item_id), None)
-    if item:
+        
+    try:
+        item = Item.objects.get(id=item_id)        
+    except Item.DoesNotExist:      
+       return HttpResponseNotFound(f'Item with id={item_id} not found')
+    else:
         context = {
-            "item": item
-        }
-        return render(request, "item-page.html", context)
-    return HttpResponseNotFound(f'Item with id={id} not found')
+        "items": items
+    }
+    return render(request, "items-list.html", context)
 
+
+
+
+    
 
 
 
 def items_list(request):
-    #result = "<h2>Список товаров</h2><ol>"
-    #for item in items:
-    #    result += f"""<li><a href="/item/{item['id']}>"{item['name']}</a></li>"""
-    #result += '</ol>'
-    #return HttpResponse(result)
+    items = Item.objects.all()
     context = {
         "items": items
     }
