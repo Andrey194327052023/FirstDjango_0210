@@ -53,10 +53,10 @@ def get_item(request, item_id):
     except Item.DoesNotExist:      
        return HttpResponseNotFound(f'Item with id={item_id} not found')
     else:
-        context = {
-        "items": items
-    }
-    return render(request, "items-list.html", context)
+        context = {          
+            "item": item
+        }
+        return render(request, "item-page.html", context)
 
 
 
