@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
     <title>Item page</title>
-</head>
-<body>
-    <header>
-        /<a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a>
-    </header>
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
     <h1>{{item.name}}</h1>
 
     <div>
@@ -22,8 +24,13 @@
         
     </div>
     <br>
+    <ul class="ul_no_mark">
+        {% for color in colors %}
+            <li><div class="div_color" style="background-color:{{color.name}};"></div>&nbsp;&nbsp;{{ color.name }}</li>
+        {% endfor %}
+    </ul> 
 
-    <a href = "/items"> Назад к списку товаров</a>
-    
-</body>
-</html>
+    <a href="{% url 'items-list' %}"> Назад к списку товаров </a>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">    
-    <title>Start page</title>
-</head>
-<body>
-    <header>
-        /<a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a>
-    </header>
-    <h1>Приветствую</h1>
-    Меня зовут:<i>{{ name }}</i><br>
-    Мой email для связи:<i>{{ email }}</i><br>
-    это главная страница сайта<br>
-    <i>Этот сайт в разработке</i>
+{% extends 'base.html' %}
+
+{% block style %}
+    <title>Index page</title>
+{% endblock %}  
+   
+{% block content %}
+{% include 'header.html' %}
+    
+    <h1> Главная страница сайта </h1>
+        Меня зовут: <i> {{ name }} </i><br>
+        Мой email для связи: <i>{{ email }}</i><br>
+
+        <i>Этот сайт в разработке</i>
 
 
-
-</body>
-</html>
+{% include 'footer.html' %}
+{% endblock %}       
