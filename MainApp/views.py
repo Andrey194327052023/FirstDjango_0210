@@ -28,15 +28,15 @@ def about(request):
     "email": "vasya@mail.ru"
 
     }
-    result = f""" 
+    result = f"""
     <header>
-        /<a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a>
-    </header>
-    Имя: <b> {author['Имя']}</b> <br>
-    Отчество: <b>{author['Отчество']}</b> <br>
-    Фамилия: <b>{author['Фамилия']}</b> <br>
-    Телефон:<b>{author['Телефон']}</b><br>
-    email: <b>{author['email']}</b>  
+        /<a href="/">Home</a> / <a href="/items"> Items</a> / <a href="/about"> About</a>
+    </header><br>
+    Имя: <b>{author['Имя']}</b><br>
+    Отчество: <b>{author['Отчество']}</b><br>
+    Фамилия: <b>{author['Фамилия']}</b><br>
+    телефон: <b>{author['телефон']}</b><br>
+    email: <b>{author['email']}</b><br>
     """
     return HttpResponse(result)
 
